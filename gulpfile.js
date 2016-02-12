@@ -11,7 +11,7 @@ gulp.task('test', function () {
     var terminalReporter = new TerminalReporter();
     var blink1Reporter = new Blink1Reporter();
     var jasmineOptions = {
-        reporters: [terminalReporter, blink1Reporter]
+        reporter: [terminalReporter, blink1Reporter]
     };
     return gulp.src(testFiles)
         .pipe($.jasmine(jasmineOptions));
