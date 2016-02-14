@@ -8,9 +8,10 @@ var Blink1Reporter = require("jasmine-blink1-reporter");
 var testFiles = 'src/**/*.spec.js';
 var jsFiles = 'src/**/*.js';
 
+var blink1Reporter = new Blink1Reporter();
+
 gulp.task('test', function () {
     var terminalReporter = new TerminalReporter();
-    var blink1Reporter = new Blink1Reporter();
     var jasmineOptions = {
         reporter: [terminalReporter, blink1Reporter]
     };
