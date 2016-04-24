@@ -7,7 +7,7 @@ var servers = [
         name: "server1",
         ip: "10.0.0.1",
         cpu: 0.1,
-        ram: 0.3
+        ram: 0.2
     },
     {
         name: "server2",
@@ -41,6 +41,15 @@ function isHighCpu (server) {
     return server.cpu >= cpuThreshold
 }
 
+function getMeanRam (servers) {
+    var sum = _(servers)
+        .map("ram")
+        .reduce(function (total, ram) {
+            return total + ram;
+        }, 0);
+    return sum / servers.length;
+}
+
 describe("", function () {
     it("get the list of ips", function () {
         expect(getIps(servers)).toEqual(["10.0.0.1", "10.0.0.2", "10.0.0.3"]);
@@ -48,5 +57,9 @@ describe("", function () {
 
     it("gets the n highest cpu servers, highest usage first", function () {
         expect(getHighCpus(servers, 1)).toEqual(["server3"]);
+    });
+
+    it("computes the mean ram usage", function () {
+        expect(getMeanRam(servers)).toEqual(0.3);
     });
 });
