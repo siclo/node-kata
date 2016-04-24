@@ -42,12 +42,7 @@ function isHighCpu (server) {
 }
 
 function getMeanRam (servers) {
-    var rams = _.map(servers, "ram");
-    return _.mean(rams);
-    //var sum = _(servers)
-    //    .map("ram")
-    //    .reduce(_.add);
-    //return sum / servers.length;
+    return _.meanBy(servers, "ram");
 }
 
 describe("", function () {
