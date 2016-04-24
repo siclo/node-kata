@@ -12,14 +12,14 @@ var servers = [
     {
         name: "server2",
         ip: "10.0.0.2",
-        cpu: 0.9,
-        ram: 0.7
+        cpu: 0.6,
+        ram: 0.1
     },
     {
         name: "server3",
         ip: "10.0.0.3",
-        cpu: 0.6,
-        ram: 0.1
+        cpu: 0.9,
+        ram: 0.6
     }
     ];
 
@@ -32,7 +32,8 @@ function getHighCpus (servers) {
     var highCpus = _.filter(servers, function (server) {
         return server.cpu >= cpuThreshold;
     });
-    return _.map(highCpus, "name");
+    var sortedHighCpus = _.orderBy(highCpus, "cpu", "desc");
+    return _.map(sortedHighCpus, "name");
 }
 
 describe("", function () {
@@ -40,7 +41,7 @@ describe("", function () {
         expect(getIps(servers)).toEqual(["10.0.0.1", "10.0.0.2", "10.0.0.3"]);
     });
 
-    it("gets the high cpu servers", function () {
-        expect(getHighCpus(servers)).toEqual(["server2", "server3"]);
+    it("gets the high cpu servers, highest usage first", function () {
+        expect(getHighCpus(servers)).toEqual(["server3", "server2"]);
     });
 });
