@@ -25,5 +25,8 @@
     "gulp-jasmine": "^2.2.1",
     "gulp-load-plugins": "^1.2.0",
     "jasmine-blink1-reporter": "git+https://github.com/siclo/jasmine-blink1-reporter.git"
+  },
+  "dependencies": {
+    "lodash": "^4.11.1"
   }
 }
