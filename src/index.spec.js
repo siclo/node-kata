@@ -67,4 +67,9 @@ describe("", function () {
     it("gets the colorful servers", function () {
         expect(getColorfulServers(servers)).toEqual([servers[0], servers[1]]);
     });
+
+    it("returns pink when the color is not set", function () {
+        expect(_.get(servers[0], "color", "pink")).toEqual("blue");
+        expect(_.get(servers[2], "color", "pink")).toEqual("pink");
+    })
 });
