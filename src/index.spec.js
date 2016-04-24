@@ -24,9 +24,7 @@ var servers = [
     ];
 
 function getIps (servers) {
-    return _.map(servers, function (server) {
-        return server.ip;
-    });
+    return _.map(servers, "ip");
 }
 
 describe("", function () {
