@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require("lodash");
+
 var servers = [
     {
         name: "server1",
@@ -22,17 +24,9 @@ var servers = [
     ];
 
 function getIps (servers) {
-    //var i;
-    //var result = [];
-    //for (i = 0; i < servers.length; i++) {
-    //    result.push(servers[i].ip);
-    //}
-    //return result;
-
-    var result = servers.map(function (server) {
+    return _.map(servers, function (server) {
         return server.ip;
-    })
-    return result;
+    });
 }
 
 describe("", function () {
