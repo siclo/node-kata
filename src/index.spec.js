@@ -27,13 +27,14 @@ function getIps (servers) {
     return _.map(servers, "ip");
 }
 
-function getHighCpus (servers) {
+function getHighCpus (servers, quantity) {
     var cpuThreshold = 0.5;
     var highCpus = _.filter(servers, function (server) {
         return server.cpu >= cpuThreshold;
     });
     var sortedHighCpus = _.orderBy(highCpus, "cpu", "desc");
-    return _.map(sortedHighCpus, "name");
+    var nHighestCpus = _.take(sortedHighCpus, quantity);
+    return _.map(nHighestCpus, "name");
 }
 
 describe("", function () {
@@ -41,7 +42,7 @@ describe("", function () {
         expect(getIps(servers)).toEqual(["10.0.0.1", "10.0.0.2", "10.0.0.3"]);
     });
 
-    it("gets the high cpu servers, highest usage first", function () {
-        expect(getHighCpus(servers)).toEqual(["server3", "server2"]);
+    it("gets the n highest cpu servers, highest usage first", function () {
+        expect(getHighCpus(servers, 1)).toEqual(["server3"]);
     });
 });
