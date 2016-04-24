@@ -7,13 +7,15 @@ var servers = [
         name: "server1",
         ip: "10.0.0.1",
         cpu: 0.1,
-        ram: 0.2
+        ram: 0.2,
+        color: "blue"
     },
     {
         name: "server2",
         ip: "10.0.0.2",
         cpu: 0.6,
-        ram: 0.1
+        ram: 0.1,
+        color: "yellow"
     },
     {
         name: "server3",
@@ -45,6 +47,10 @@ function getMeanRam (servers) {
     return _.meanBy(servers, "ram");
 }
 
+function getColorfulServers (servers) {
+    return _.filter(servers, "color");
+}
+
 describe("", function () {
     it("get the list of ips", function () {
         expect(getIps(servers)).toEqual(["10.0.0.1", "10.0.0.2", "10.0.0.3"]);
@@ -56,5 +62,9 @@ describe("", function () {
 
     it("computes the mean ram usage", function () {
         expect(getMeanRam(servers)).toEqual(0.3);
+    });
+
+    it("gets the colorful servers", function () {
+        expect(getColorfulServers(servers)).toEqual([servers[0], servers[1]]);
     });
 });
