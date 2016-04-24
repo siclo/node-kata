@@ -28,22 +28,17 @@ function getIps (servers) {
 }
 
 function getHighCpus (servers, quantity) {
-    var cpuThreshold = 0.5;
-    //var highCpus = _.filter(servers, function (server) {
-    //    return server.cpu >= cpuThreshold;
-    //});
-    //var sortedHighCpus = _.orderBy(highCpus, "cpu", "desc");
-    //var nHighestCpus = _.take(sortedHighCpus, quantity);
-    //return _.map(nHighestCpus, "name");
-
     return _(servers)
-        .filter(function (server) {
-            return server.cpu >= cpuThreshold
-        })
+        .filter(isHighCpu)
         .orderBy("cpu", "desc")
         .take(quantity)
         .map("name")
         .value();
+}
+
+function isHighCpu (server) {
+    var cpuThreshold = 0.5;
+    return server.cpu >= cpuThreshold
 }
 
 describe("", function () {
